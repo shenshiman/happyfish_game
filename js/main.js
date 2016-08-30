@@ -12,8 +12,22 @@ var daltaTime;
 var bgPic=new Image();
 var ane;
 var fruit;
+
+var mx;
+var my;
+
 var mom;
 var baby;
+
+var babyTail=[];
+var babyEye=[];
+var babyBody=[];
+
+var momTail=[];
+var momEye=[];
+
+
+
 
 document.body.onload=game;
 function game(){
@@ -48,6 +62,34 @@ function init(){
 
 	mx=canWidth*0.5;
 	my=canHeight*0.5;
+
+
+	for(var i=0;i<8;i++){
+		babyTail[i]=new Image();
+		babyTail[i].src="./src/babyTail"+i+".png";
+	}
+
+	for(var i=0;i<2;i++){
+		babyEye[i]=new Image();
+		babyEye[i].src="./src/babyEye"+i+".png";
+	}
+
+	for(var i=0;i<20;i++){
+		babyBody[i]=new Image();
+		babyBody[i].src="./src/babyFade"+i+".png";
+	}
+
+	for(var i=0;i<8;i++){
+		momTail[i]=new Image();
+		momTail[i].src="./src/bigTail"+i+".png";
+	}
+	for(var i=0;i<2;i++){
+		momEye[i]=new Image();
+		momEye[i].src="./src/bigEye"+i+".png";
+	}
+
+
+
 }
 function gameloop(){
 	window.requestAnimFrame(gameloop);//类似setinterval
@@ -66,8 +108,9 @@ function gameloop(){
 
 	ctx1.clearRect(0,0,canWidth,canHeight)
 	mom.draw();
-	momFruitsCollision();
 	baby.draw();
+	momFruitsCollision();
+	momBabyCollision();
 }
 function onMouseMove(e){
 	if(e.offSetX||e.layerX){
