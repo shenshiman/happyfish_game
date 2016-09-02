@@ -69,7 +69,8 @@ babyObj.prototype.draw=function(){
 		if(this.babyBodyCount>19){
 			this.babyBodyCount=19;
 			//gameover
-			alert("小甜饿死一条鱼");
+			//alert("小甜饿死一条鱼");
+			data.gameOver=true;
 		}
 	}
 
