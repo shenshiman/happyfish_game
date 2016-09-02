@@ -25,8 +25,18 @@ var babyBody=[];
 
 var momTail=[];
 var momEye=[];
+var momBodyOra=[];
+var momBodyBlue=[];
 
 
+var data;
+
+var wave;
+
+var halo;
+
+var dust;
+var dustPic=[];
 
 
 document.body.onload=game;
@@ -88,8 +98,28 @@ function init(){
 		momEye[i].src="./src/bigEye"+i+".png";
 	}
 
+	data=new dataObj();
 
+	for(var i=0;i<8;i++){
+		momBodyOra[i]=new Image();
+		momBodyBlue[i]=new Image();
+		momBodyOra[i].src="./src/bigSwim"+i+".png";
+		momBodyBlue[i].src="./src/bigSwimBlue"+i+".png";
 
+	}
+
+	wave=new waveObj();
+	wave.init();
+
+	halo=new haloObj();
+	halo.init();
+
+	for(var i=0;i<7;i++){
+		dustPic[i]=new Image();
+		dustPic[i].src="./src/dust"+i+".png";
+	}
+	dust=new dustObj();
+	dust.init();
 }
 function gameloop(){
 	window.requestAnimFrame(gameloop);//类似setinterval
@@ -111,11 +141,18 @@ function gameloop(){
 	baby.draw();
 	momFruitsCollision();
 	momBabyCollision();
+	data.draw();
+	wave.draw();
+	halo.draw();
+	dust.draw();
 }
 function onMouseMove(e){
-	if(e.offSetX||e.layerX){
+	if(!data.gameOver){
+		if(e.offSetX||e.layerX){
 		mx=e.offSetX==undefined?e.layerX:e.offSetX;
 		my=e.offSetY==undefined?e.layerY:e.offSetY;
 		//console.log(mx);
 	}
+	}
+	
 }
